@@ -1,0 +1,47 @@
+{
+    "image1": {
+        "data": "hwQQABAAAAAAAAAAsMsMAAAAsAuw3csAAACwvdvd3QwAALBVvdzdywAAsFtVzd3NAAC7tVXF3c0AsFtVW7XdzQCwVdXRW9XNALBVFf9VVc0Au1X1v1RVxQC1VVVFVFXFALVV1URUVbUAC1tFRFRVuwAAsPtMVNULAAAAALC0uwAAAAAAAAsAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "duck"
+    },
+    "image2": {
+        "data": "hwQQAA4AAAAARA4AAAAAAEBV5QAAAAAAVFXk/g8AAABURVRV9P//AFRFVV9lVPUA4FVVVWVVDwAAXlVFb1UPAABeVUVvVf8A4FVVVWVV9QBURVVfZUUPAFRFVFVGVQ8AVFXk/k9U9QBAVeUA8PT/AABEDgBf9QAAAAAA8FUPAAAAAADw/wAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "dog"
+    },
+    "image3": {
+        "data": "hwQOAA4AAADOzO/+DwAAAN472937//8A3r3T3y3b/QDA3d39Ld0PAADf3d0r3Q8AAL/d3Svd/wDA3d39Ld39AN69098tvQ8A3jvb3bLdDwDOzO/+v9v9AAAAAADw+/8AAAAA+//9AAAAAADf3fsAAAAAAPv/DwAA",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "cat"
+    },
+    "image4": {
+        "data": "hwQQABAAAAAAAMDMAAAAAADA3M0PAAAAAN/tzf0AAADw/e/N/fD/D+/d3c397979793d3P3+v/3v/d/d/f7//O/e3d3u7t797+7u7u7+v/3w7u7u7+7++wD/vfvv7v77APDdzfDu7v0AAM8MAO/+/wAAAPD//w8AAAAA7+7+AAAAAAD//w8AAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "monkey"
+    },
+    "image5": {
+        "data": "hwQQABAAAAAAAAAAAMD/AADA/A8AHGEPAGx398AXEcbAd2x3fxcRwWx39ncsEhHBfHdmd3x3EcF8d2Z3fGcWwXx39md8/GbBfHdsx2fPbMFsd3d3x8xmxsB3d3f2ZmbGAGx3Z39nZvYAwPz/d2fGDwAAAMB3xv8AAAAAAHwMAAAAAAAAwAwAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "snake"
+    },
+    "image6": {
+        "data": "hwQQABAAAAAAAAAAALzMDAAA+7/AVVTFAMD1X8tFVcUAwFVVVbRVxQAAzDxVRcvFAMBmxlNFRMwAbMw8VUTExMDGVVVFzFwMwMP1X8xVVQzAM/zPw1VVDMAzM2YzXFUMbDMzYzOzzAw8NjNjM8PLzMA8M2Mzw1vFAMAzzDMMsMwAAMzMzAAAAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "snail"
+    },
+    "image7": {
+        "data": "hwQQABAAAADA+wAAAAAAANz7AP/d3cwA3P3/b9PdzQy7u7u7Nt3dzbu7u7s23d3Nu/+7uzbd3d28u7u71t3d3QDw/2vdvdvNAAAA393dvd0AAADf3d273QAAAMDdu83dAAAAAL3bzb0AAAAAwN3N+wAAAAAAvMv8AAAAAAAAvA8AAAAAAAC8Dw==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "pigeon"
+    },
+    "image8": {
+        "data": "hwQQABAAAAAAAAAA/w8AAAAAAMBE9AAAAAAATEREDwAAAMBEREQPAAAATET0RPQAAMDcRERE/QAAzEQRERFEDwDMRETExEQPwM1ERMRETw/AzURERP9PD8DNTURERMTNwN0cTUTU3M0AzMwREf2/zQAAAMz0/8wMAADARET0AAAAAMDM//8AAA==",
+        "mimeType": "image/x-mkcd-f4",
+        "displayName": "fish"
+    },
+    "*": {
+        "mimeType": "image/x-mkcd-f4",
+        "dataEncoding": "base64",
+        "namespace": "myImages"
+    }
+}
