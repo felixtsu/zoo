@@ -1,24 +1,21 @@
-//  class Animal:
-//      animal_name = ""
-//      feet = 0
-//      wings = True
-//      warm_blood = True
-//      def __init__(self, animal_name, feet, wings, warm_blood):
-//          self.animal_name = animal_name
-//          self.feet = feet
-//          self.wings = wings
-//          self.warm_blood = warm_blood
-//  tiger = Animal("老虎", 4, False, True)
-//  eagle = Animal("老鹰", 2, True, True)
-//  snake = Animal("蛇", 0, False, False)
-//  snail = Animal("蜗牛", 0, False, False)
-//  bee = Animal("蜜蜂", 0, True, False)
-//  animals = [tiger, eagle, snake, snail, bee]
-//  for animal in animals:
-//      if animal.wings:
-//          console.log(animal.animal_name + " has wings")
-//      else :
-//          console.log(animal.animal_name + " can not fly")
-//  pause(100)
-//  zoo.init()
-zoo.init()
+//  这是每次院长筛选动物时候都会调用的函数
+//  三个参数分别代表有多少只脚、有没有翅膀、是否温血动物
+zoo.registerFilterHandler(function filterHanlder(feet: number, wings: boolean, warm_blood: boolean) {
+    //  这个函数要做的，就是通过下面这个sumbit_answer函数提交正确的动物名单
+    //  比如下面就会提交猫和蛇
+    //  zoo.sumbit_answer(["猫","蛇"])
+    
+})
+//  这是每天动物园开门营业的时候会调用的函数
+//  当天有多少只动物登场，就会调用多少次
+//  name - 动物的名称  （字符串）
+//  feet - 动物有几只脚  (数字)
+//  wings - 动物有没有翅膀 （布尔值）
+//  warm_blood - 动物是不是温血动物 （布尔值）
+zoo.registerOnAnimalEnterHandler(function aminalEnterHandler(name: string, feet: number, wings: boolean, warm_blood: boolean) {
+    //  这个里面你随意
+    
+})
+//  准备好上面两个函数的内容，动物园就可以开门营业了
+//  参数决定是否跳过介绍环节 （跳过可以节省测试时间）
+zoo.init(true)

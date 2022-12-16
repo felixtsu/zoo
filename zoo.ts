@@ -2,7 +2,17 @@ namespace SpriteKind {
     export const _ANIMAL_INTERNAL_SPRITE_KIND = SpriteKind.create()
 }
 
+//%block="动物园的故事"
+//%weight=100 icon="\u2303"
 namespace zoo {
+
+    let ANIMALS: AnimalInternal[]
+    let animalMap: { [key: string]: AnimalInternal } = {}
+    let _skipIntroduction: boolean = false;
+
+    let animalsOnStage: AnimalInternal[] = []
+    let animalEnterHandler: (name: string, feet: number, wings: boolean, warmBlood: boolean) => void = null
+    let filterHandler: (feet: number, wings: boolean, warmBlood: boolean) => void = null
 
     class AnimalInternal {
 
@@ -23,6 +33,12 @@ namespace zoo {
 
         public _init() {
             this.sprite = sprites.create(this.spriteImage, SpriteKind._ANIMAL_INTERNAL_SPRITE_KIND)
+            if (this.name == '鱼') {
+                this.sprite.x = 112
+                this.sprite.y = 92
+            } else {
+                tiles.placeOnRandomTile(this.sprite, sprites.castle.tileGrass1)
+            }
         }
 
     }
@@ -33,14 +49,12 @@ namespace zoo {
 
 
 
-    let ANIMALS :AnimalInternal[]
-    let animalMap: { [key: string]: AnimalInternal} = {}
-
-    let animalsOnStage:AnimalInternal[]= []
-    let animalEnterHandler : (sprite: Sprite, name : string, feet: number, wings: boolean, warmBlood: boolean) => void = null
-    let filterHandler : (feet: number, wings: boolean, warmBlood: boolean)=> void = null
-
-    export function init() {
+    //% blockId=init_game
+    //% block="开门营业 跳过对话%skipIntroduction=toggleOnOff"
+    //% skipIntroduction.defl=false
+    export function init(skipIntroduction : boolean) {
+        _skipIntroduction = skipIntroduction
+        tiles.setTilemap(assets.tilemap`default`)
         ANIMALS = [
             new AnimalInternal(assets.image`cat`, "猫", 4, false, true),
             new AnimalInternal(assets.image`dog`, "狗", 4, false, true),
@@ -95,22 +109,28 @@ namespace zoo {
         
         for (let a of lastAnswer) {
             let animal = animalMap[a]
+
+            if (animal == null) {
+                game.splash(a + "都不在")
+                game.over()
+            }
+
             animal.sprite.sayText("我")
             if (keyword.feet != animal.feet) {
                 pause(1000)
-                animal.sprite.sayText("我好像有" + animal.feet + "条腿嗯")
+                animal.sprite.sayText("我好像有" + animal.feet + "条腿嗯",2000)
                 pause(2000)
                 game.over()
             }
             if (keyword.wings != animal.wings) {
                 pause(1000)
-                animal.sprite.sayText("我好像" + animal.wings ? "" : "没" + "有翅膀嗯" )
+                animal.sprite.sayText("我好像" + animal.wings ? "" : "没" + "有翅膀嗯", 2000 )
                 pause(2000)
                 game.over()
             }
             if (keyword.wings != animal.wings) {
                 pause(1000)
-                animal.sprite.sayText("我好像是" + animal.warmBlood ? "温" : "冷" + "血动物嗯")
+                animal.sprite.sayText("我好像是" + animal.warmBlood ? "温" : "冷" + "血动物嗯", 2000)
                 pause(2000)
                 game.over()
             }
@@ -129,49 +149,58 @@ namespace zoo {
     }
 
     function introduceAnimals() {
+        if (!_skipIntroduction) {
+            game.splash("自我介绍一下吧")
+            for (let animal of animalsOnStage) {
+                animal.sprite.sayText(animal.name, 2000)
+            }
+            pause(2000)
 
-        for (let animal of animalsOnStage) {
-            animal.sprite.x += randint(-60, 60)
-            animal.sprite.y += randint(-40, 40)
+            game.splash("你们有几条腿")
+            for (let animal of animalsOnStage) {
+                animal.sprite.sayText(animal.feet, 2000)
+            }
+            pause(2000)
+
+            game.splash("有翅膀吗？")
+            for (let animal of animalsOnStage) {
+                animal.sprite.sayText(animal.wings ? "有" : "没有", 2000)
+            }
+            pause(2000)
+
+            game.splash("温血动物吗")
+            for (let animal of animalsOnStage) {
+                animal.sprite.sayText(animal.warmBlood ? "是" : "否", 2000)
+            }
+            pause(2000)
         }
 
-        game.splash("自我介绍一下吧")
-
         for (let animal of animalsOnStage) {
-            animal.sprite.sayText(animal.name, 2000)
+            animalEnterHandler(animal.name, animal.feet, animal.wings, animal.warmBlood)
         }
-        pause(2000)
-
-        game.splash("你们有几条腿")
-        for (let animal of animalsOnStage) {
-            animal.sprite.sayText(animal.feet, 2000)
-        }
-        pause(2000)
-
-        game.splash("有翅膀吗？")
-        for (let animal of animalsOnStage) {
-            animal.sprite.sayText(animal.wings ? "有" : "没有", 2000)
-        }
-        pause(2000)
-
-        game.splash("温血动物吗")
-        for (let animal of animalsOnStage) {
-            animal.sprite.sayText(animal.warmBlood ? "是" : "否", 2000)
-        }
-        pause(2000)
         
     }
 
-    export function registerOnAnimalEnterHandler(cb: (sprite:Sprite, name :string, feet:number, wings:boolean, warmBlood:boolean) =>void ) {
+
+    //% blockId=on_animal_enter_handler
+    //% block="动物登场"
+    //% draggableParameters
+    export function registerOnAnimalEnterHandler(cb: (name :string, feet:number, wings:boolean, warmBlood:boolean) =>void ) {
         animalEnterHandler = cb;
     }
 
+
+    //% blockId=on_filter_handler
+    //% block="筛选动物"
+    //% draggableParameters
     export function registerFilterHandler(cb: (feet:number, wings:boolean, warmBlood:boolean)=>void) {
         filterHandler = cb;
     }
 
     let lastAnswer :string[];
 
+    //% blockId=sumbit_answer
+    //% block="叫 $answer=variables_get(list) 举手"
     export function sumbitAnswer(answer: string[]) {
         lastAnswer = answer
     }

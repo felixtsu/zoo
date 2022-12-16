@@ -1,5 +1,5 @@
 {
-    "name": "zoo",
+    "name": "zoo - python版",
     "description": "",
     "dependencies": {
         "device": "*",
