@@ -3,8 +3,7 @@
 zoo.registerFilterHandler(function filterHanlder(feet: number, wings: boolean, warm_blood: boolean) {
     //  这个函数要做的，就是通过下面这个sumbit_answer函数提交正确的动物名单
     //  比如下面就会提交猫和蛇
-    //  zoo.sumbit_answer(["猫","蛇"])
-    
+    zoo.sumbitAnswer(["猫", "蛇"])
 })
 //  这是每天动物园开门营业的时候会调用的函数
 //  当天有多少只动物登场，就会调用多少次
@@ -12,10 +11,10 @@ zoo.registerFilterHandler(function filterHanlder(feet: number, wings: boolean, w
 //  feet - 动物有几只脚  (数字)
 //  wings - 动物有没有翅膀 （布尔值）
 //  warm_blood - 动物是不是温血动物 （布尔值）
-zoo.registerOnAnimalEnterHandler(function aminalEnterHandler(name: string, feet: number, wings: boolean, warm_blood: boolean) {
-    //  这个里面你随意
+//  这个里面你随意
+zoo.registerOnAnimalEnterHandler(function aminalEnterHandler(name: string, feet: number, wings: boolean, warm_blood2: boolean) {
     
 })
 //  准备好上面两个函数的内容，动物园就可以开门营业了
 //  参数决定是否跳过介绍环节 （跳过可以节省测试时间）
-zoo.init(true)
+zoo.init(false, true)
