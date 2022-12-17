@@ -1,6 +1,6 @@
 //  这是每次院长筛选动物时候都会调用的函数
 //  三个参数分别代表有多少只脚、有没有翅膀、是否温血动物
-zoo.registerFilterHandler(function filterHanlder(feet: number, wings: boolean, warm_blood: boolean) {
+zoo.registerFilterHandler(function on_register_filter_handler(feet: number, wings: boolean, warm_blood: boolean) {
     //  这个函数要做的，就是通过下面这个sumbit_answer函数提交正确的动物名单
     //  比如下面就会提交猫和蛇
     zoo.sumbitAnswer(["猫", "蛇"])
@@ -12,7 +12,7 @@ zoo.registerFilterHandler(function filterHanlder(feet: number, wings: boolean, w
 //  wings - 动物有没有翅膀 （布尔值）
 //  warm_blood - 动物是不是温血动物 （布尔值）
 //  这个里面你随意
-zoo.registerOnAnimalEnterHandler(function aminalEnterHandler(name: string, feet: number, wings: boolean, warm_blood2: boolean) {
+zoo.registerOnAnimalEnterHandler(function on_register_animal_enter_handler(name: string, feet: number, wings: boolean, warm_blood: boolean) {
     
 })
 //  准备好上面两个函数的内容，动物园就可以开门营业了
