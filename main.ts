@@ -12,9 +12,9 @@ zoo.registerFilterHandler(function on_register_filter_handler(feet: number, wing
 //  wings - 动物有没有翅膀 （布尔值）
 //  warm_blood - 动物是不是温血动物 （布尔值）
 //  这个里面你随意
-zoo.registerOnAnimalEnterHandler(function on_register_animal_enter_handler(name: string, feet: number, wings: boolean, warm_blood: boolean) {
+zoo.registerOnAnimalEnterHandler(function on_register_animal_enter_handler(name: string, feet2: number, wings2: boolean, warm_blood2: boolean) {
     
 })
 //  准备好上面两个函数的内容，动物园就可以开门营业了
 //  参数决定是否跳过介绍环节 （跳过可以节省测试时间）
-zoo.init(false, true)
+zoo.init(false, zoo.Mode.FEET_ONLY)

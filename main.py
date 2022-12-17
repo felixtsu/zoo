@@ -15,10 +15,10 @@ zoo.register_filter_handler(on_register_filter_handler)
 # warm_blood - 动物是不是温血动物 （布尔值）
 # 这个里面你随意
 
-def on_register_animal_enter_handler(name, feet, wings, warm_blood):
+def on_register_animal_enter_handler(name, feet2, wings2, warm_blood2):
     pass
 zoo.register_on_animal_enter_handler(on_register_animal_enter_handler)
 
 # 准备好上面两个函数的内容，动物园就可以开门营业了
 # 参数决定是否跳过介绍环节 （跳过可以节省测试时间）
-zoo.init(False, True)
+zoo.init(False, zoo.Mode.FEET_ONLY)

@@ -6,10 +6,23 @@ namespace SpriteKind {
 //%weight=100 icon="\u2303"
 namespace zoo {
 
+    export enum Mode {
+        //%block="feet_only"
+        //%block.loc.zh-CN="简单"
+        FEET_ONLY,
+        //% block="multiple_keyword"
+        //%block.loc.zh-CN="难"
+        MULTIPLE_KEYWORD,
+        //% block="single_keyword"
+        //%block.loc.zh-CN="这个也难"
+        SINGLE_KEYWORD
+    }
+
     let ANIMALS: AnimalInternal[]
     let animalMap: { [key: string]: AnimalInternal } = {}
     let _skipIntroduction: boolean = false;
-    let _advanceMode = false;
+    
+    let _mode = Mode.FEET_ONLY;
 
     let animalsOnStage: AnimalInternal[] = []
     let animalEnterHandler: (name: string, feet: number, wings: boolean, warmBlood: boolean) => void = null
@@ -46,7 +59,10 @@ namespace zoo {
 
     function randomFilterKeywords() : AnimalInternal {
         let keyword = new AnimalInternal(null, null, randint(0,2) * 2, Math.percentChance(50), Math.percentChance(50))
-        if (_advanceMode) {
+        if (_mode == Mode.FEET_ONLY) {
+            keyword.wings = null
+            keyword.warmBlood = null
+        } else if (_mode == Mode.SINGLE_KEYWORD) {
             let keptField = randint(0, 2)
             if (keptField == 0) {
                 keyword.wings = null
@@ -82,12 +98,12 @@ namespace zoo {
 
 
     //% blockId=init_game
-    //% block="开门营业 进阶模式%advanceMode=toggleOnOff 跳过对话 %skipIntroduction=toggleOnOff"
+    //% block="开门营业 模式%mode 跳过对话 %skipIntroduction=toggleOnOff"
     //% skipIntroduction.defl=false
     //% advanceMode.defl=false
-    export function init(skipIntroduction: boolean, advanceMode : boolean ) {
+    export function init(skipIntroduction: boolean, mode : Mode ) {
         _skipIntroduction = skipIntroduction
-        _advanceMode = advanceMode
+        _mode = mode
         tiles.setTilemap(assets.tilemap`default`)
         ANIMALS = [
             new AnimalInternal(assets.image`cat`, "猫", 4, false, true),
@@ -152,17 +168,23 @@ namespace zoo {
             animal.sprite.sayText("我")
             if (keyword.feet != null && keyword.feet != animal.feet) {
                 pause(1000)
+                animal.sprite.sayText("!!!", 1000)
+                pause(1000)
                 animal.sprite.sayText("我好像有" + animal.feet + "条腿嗯",2000)
                 pause(2000)
                 game.over()
             }
             if (keyword.wings != null && keyword.wings != animal.wings) {
                 pause(1000)
+                animal.sprite.sayText("!!!", 1000)
+                pause(1000)
                 animal.sprite.sayText("我好像" + animal.wings ? "" : "没" + "有翅膀嗯", 2000 )
                 pause(2000)
                 game.over()
             }
             if (keyword.warmBlood != null && keyword.warmBlood != animal.warmBlood) {
+                pause(1000)
+                animal.sprite.sayText("!!!", 1000)
                 pause(1000)
                 animal.sprite.sayText("我好像是" + animal.warmBlood ? "温" : "冷" + "血动物嗯", 2000)
                 pause(2000)
